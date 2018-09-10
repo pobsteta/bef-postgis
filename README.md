@@ -14,13 +14,11 @@ Unless -e POSTGRES_DB is passed to the container at startup time, this database 
 
 ## Usage
 In order to run a basic container capable of serving a PostGIS-enabled database, start a container as follows:
-
 $ docker run --name some-postgis -e POSTGRES_PASSWORD=mysecretpassword -d pobsteta/bef-postgis
 
 For more detailed instructions about how to start and control your Postgres container, see the documentation for the postgres image.
 
 Once you have started a database container, you can then connect to the database as follows:
-
 $ docker run -it --link some-postgis:postgres --rm postgres \
     sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 
@@ -32,7 +30,6 @@ When You encouter errors due to PostGIS update OperationalError: could not acces
 docker exec some-postgis update-postgis.sh
 
 It will update to Your newest PostGIS. Update is idempotent, so it won't hurt when You run it more than once, You will get notification like:
-
 $ Updating PostGIS extensions template_postgis to X.X.X
 $ NOTICE:  version "X.X.X" of extension "postgis" is already installed
 $ NOTICE:  version "X.X.X" of extension "postgis_topology" is already installed
